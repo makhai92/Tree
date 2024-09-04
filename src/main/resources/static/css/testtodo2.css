@@ -1,0 +1,86 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-content: center;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* button */
+button {
+  border: none;
+  background: transparent;
+  display: inline-block;
+  font-family: "Josefin Sans", sans-serif;
+  cursor: pointer;
+}
+.button--filter {
+  margin: 0 1rem;
+}
+.button--filter.active,
+.light .button--filter.active {
+  color: var(--bright-blue);
+  font-weight: 700;
+}
+
+/* light mode */
+
+.light#body {
+  background: var(--Very-Light-Grayish-Blue);
+}
+
+.light .todo-icon {
+  background: url(/img/icon-sun.svg) no-repeat center center/cover;
+}
+.light .todos li {
+  background: var(--very-Light-Gray);
+  border-bottom: 1px solid var(--Very-Light-Grayish-Blue);
+}
+.light .todos li .cross path {
+  fill: var(--Very-Dark-Blue);
+}
+
+.light .todos li.completed,
+.light .todos li p,
+.light .btn-grup button,
+.light .attribution span {
+  color: var(--Very-Dark-Blue);
+}
+.light .circle {
+  border: 1px solid var(--Very-Dark-Blue);
+}
+
+.light .todo-table {
+  background: transparent;
+}
+
+.light .input,
+.light .btn-grup,
+.light .item-info {
+  background: var(--very-Light-Gray);
+  color: var(--Very-Dark-Blue);
+}
+
+/* dark mode */
+button,
+.attribution span {
+  color: var(--Very-Light-Grayish-Blue);
+}
+.todo-header h1 {
+  color: var(--very-Light-Gray);
+}
+.input,
+.todos li,
+.item-info,
+.attribution {
+  background: var(--Very-Dark-Desaturated-Blue);
+  color: var(--Very-Light-Grayish-Blue);
+}
+
+.btn-grup {
+  background: var(--Very-Dark-Desaturated-Blue);
+}

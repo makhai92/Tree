@@ -2,38 +2,123 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>mybatis</title>
+<title>Tree</title>
+<link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/test.css" />
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 </head>
 <body>
-	<h1>Mybatis 메인 페이지</h1>
-	<hr>
-	<th:block th:if="${session.user == null}">
-	<form action="/user/login" method="post">
-		<fieldset>
-			<legend>로그인</legend>
-			<div>
-				<label for="userId">아이디</label>
-				<input type="text" name="userId" id="userId">
-			</div>
-			<div>
-				<label for="userPw">비밀번호</label>
-				<input type="password" name="userPw" id="userPw">
-			</div>
-			<div>
-				<input type="submit" value="로그인">
-			</div>
-		</fieldset>
-	</form>
-	<h3><a href="/user/joinFrm">회원가입</a></h3>
-	<h3><a href="/user/searchPwFrm">비밀번호 찾기</h3>
-	<h3><a href="/mybatis/main">마이바티스 동적쿼리</a></h3>
-	</th:block>
-	<th:block th:if="${session.user != null}">
-	<h2>[<span th:text="${session.user.userName}"></span>]님의 TODO</h2>
-	<h3><a href="/user/logout">로그아웃</a></h3>
-	<h3><a href="/user/allUser">전체회원조회</a></h3>
-	<h3><a href="/user/mypage">마이페이지</a></h3>
-	</th:block>
-	<h3><a href="/board/list?reqPage=1">게시판</a></h3>
+<th:block th:include="common/header"></th:block>
+	<main>
+      <div class="main-content">
+        <h1>세상에서 쉬운 협업 공간 트리</h1>
+        <h3>
+          제일 쉬운 업무용 협업툴 트리! 스타트업에서 부터 대기업, 커머스
+          ∙제조∙IT∙F&B∙미디어 등 <br />성장하는 기업이 협업툴 트리를
+          사용하고있습니다.
+        </h3>
+        <div class="btn-container">
+          <button class="btn-collabo">협업문의</button>
+          <button class="btn-join">회원가입</button>
+        </div>
+        <div class="video-container">
+          <!-- 왼쪽 동영상과 이미지 -->
+          <div class="left-section">
+            <div class="image-container">
+              <img
+                src="/img/phone.png"
+                alt="배경 이미지"
+                class="background-image"
+              />
+              <div class="video-wrapper">
+                <video class="video-overlay" autoplay loop muted playsinline>
+                  <source src="/img/video1.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <!-- 오른쪽 동영상 -->
+          <div class="right-section">
+            <div class="video-border-container">
+              <div class="image-container right-video">
+                <div class="video-wrapper">
+                  <video class="video-overlay2" autoplay loop muted playsinline>
+                    <source src="/img/video2.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="parallax-element background"></div>  
+          <div class="parallax-element square"><img
+            src="/img/c1.PNG"
+            alt="배경 이미지"
+            class="background-image"
+          /></div>
+          <div class="parallax-element circle"><img
+            src="/img/c2.PNG"
+            alt="배경 이미지"
+            class="background-image"
+          /></div>
+          <strong class="parallax-element title">단절된 소통, 번거로운 자료 공유,<br>보안위협은 이제 그만!<br>협업툴 트리와 함께라면 효율적으로<br>협업할 수 있습니다.</strong>
+        </div>
+        
+        <div class="section">
+          <div class="parallax-element background"></div>  
+          <div class="parallax-element square"><img
+            src="/img/c1.PNG"
+            alt="배경 이미지"
+            class="background-image"
+          /></div>
+          <div class="parallax-element circle"><img
+            src="/img/c1.PNG"
+            alt="배경 이미지"
+            class="background-image"
+          /></div>
+          <strong class="parallax-element title">협업툴 트리를 선택하는 이유</strong>
+        </div>
+      </main>
+      <th:block th:include="common/footer"></th:block>
+      <script>
+     window.addEventListener('scroll', function () {
+  const sections = document.querySelectorAll('.section');
+
+  sections.forEach(function (section) {
+    let bounds = section.getBoundingClientRect();
+    const background = section.querySelector('.background');
+    const title = section.querySelector('.title');
+    const circle = section.querySelector('.circle');
+    const square = section.querySelector('.square');
+
+    if (bounds.top < window.innerHeight && bounds.bottom >= 0) {
+      var scrolled = window.pageYOffset - section.offsetTop;
+      
+      background.style.transform = `translateY(${scrolled * 0.8}px)`;
+      title.style.transform = `translateY(${scrolled * 0.3}px)`;
+
+      let maxTranslate = window.innerHeight * 0.5; 
+      let circleTranslateX = Math.min(scrolled * 0.5, maxTranslate);
+      let circleTranslateY = Math.min(scrolled * 0.5, maxTranslate);
+      let squareTranslateX = Math.max(scrolled * -0.5, -maxTranslate);
+
+      circle.style.transform = `translate(${circleTranslateX}px, ${circleTranslateY}px)`;
+      square.style.transform = `translate(${squareTranslateX}px)`;
+
+      let opacityValue = Math.min(1, scrolled / window.innerHeight);
+      circle.style.opacity = opacityValue;
+      square.style.opacity = opacityValue;
+    }
+  });
+});
+
+</script>
 </body>
 </html>
